@@ -90,11 +90,36 @@ fMatrix  operator *  ( const fMatrix &A, const fMatrix &B )
     return c;
 }
 
-// fVector  operator *  ( const fMatrix &A, const fVector &B )
-// {
-//     cout<< B.Array()[0];
-//     return 0;
-// }
+fVector  operator *  ( const fMatrix &A, const fVector &B )
+{
+    fVector c(A.rows);
+    for(int i=0;i<A.rows;i++)
+    {
+        double sum = 0;
+        for(int j=0;j<B.Size();j++)
+        {
+            sum += A.elem[i*B.Size()+j]*B.Array()[j];
+        }
+        c.Array()[i] = sum;
+    }
+        // cout<< B.Array()[i]<<endl;
+    return c;
+}
+
+fVector  operator *  ( const fVector &A , const fMatrix &B )
+{
+    fVector c(B.cols);
+    for(int i=0;i<B.rows;i++)
+    {
+        double sum = 0;
+        for(int j=0;j<A.Size();j++)
+        {
+            sum += A.Array()[j]*B.elem[i+j*B.cols];
+        }
+        c.Array()[i] = sum;
+    }
+    return c;
+}
 
 fMatrix& operator += (fMatrix &A, const fMatrix &B )
 {
