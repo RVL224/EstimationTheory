@@ -391,12 +391,6 @@ fMatrix  Cov    ( const fMatrix &A )
 
 void fMatrix::Show() const
 {
-    // for(int i=0;i<cols*rows;i++)
-    // {
-    //     cout<<elem[i]<<" ";
-
-    // }
-    // cout <<endl;
     for(int i=0;i<rows;i++)
     {
         for(int j=0;j<cols;j++)
