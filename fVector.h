@@ -28,7 +28,7 @@
 #endif
 #endif
 
-enum VecType {ColVec = 1, RowVec = 2};
+enum VecType {ColVec = 1, RowVec};
 
 class fVector 
 {
