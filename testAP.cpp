@@ -197,11 +197,11 @@ void testMatrixFuns()
 
 	// 8. MatA*VecA
 	cout << "\n8. MatA*VecA" << endl;
-	(MatA*VecA).Show(RowVec);
+	(MatA*VecA).Show();
 
 	// 9. VecA*MatA
 	cout << "\n9. VecA*MatA" << endl;
-	(VecA*MatA).Show();
+	(VecA*MatA).Show(RowVec);
 
 	// 10. A+=B
 	cout << "\n10. A+=B" << endl;
