@@ -53,7 +53,7 @@ typedef struct	st_ML_Param
 class CParamEstimator
 {
 public:
-	CParamEstimator();
+	CParamEstimator(void);
 	~CParamEstimator();
 
 	fMatrix*	SolveOptParam(fVector*	pfVecOptParam);
