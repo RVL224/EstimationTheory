@@ -134,6 +134,7 @@ private:
 	static int nMatCount;
 public: // Inlined functions.
     inline Float  operator()( int i,int j) const { return elem[i*rows+j]; }
+    inline Float Size(int i,int j );
 
 };
 fMatrix  Outer       ( const fVector &, const fVector & );
