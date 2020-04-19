@@ -1,6 +1,7 @@
 #include<iostream>
 #include "fVector.h"
 #include "fMatrix.h"
+#include "ParamEstimator.h" 
 using namespace std;
 
 void testVectorFuns()
@@ -284,9 +285,25 @@ void testMatrixFuns()
 	// cout << MatA(2,0) << endl;
 }
 
+void testParamEstimator()
+{
+	Float C[9] = {0.9649, 0.9572, 0.1419, 
+				  0.1576, 0.4854, 0.4218, 
+				  0.9706, 0.8003, 0.9157};
+	CParamEstimator c();
+	
+	
+	
+	
+	// a.SetParamEstiMethod(LS);
+	
+
+}
+
 int main()
 {
 	// testVectorFuns();
-	testMatrixFuns();
+	// testMatrixFuns();
+	testParamEstimator();
 	return 0;
 }
