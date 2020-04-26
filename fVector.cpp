@@ -105,6 +105,21 @@ double operator * ( const fVector &A, const fVector &B)
     return n;
 }
 
+fVector  operator ^  ( const fVector &A, const fVector &B)
+{
+    if(A.size != 3 && B.size !=3)
+    {
+        cout << "vector shape error";
+        return 0; 
+    }
+    fVector c(A.size);
+    c.elem[0] = A.elem[1]*B.elem[2] - A.elem[2]*B.elem[1];
+    c.elem[1] = -A.elem[0]*B.elem[2] + A.elem[2]*B.elem[0];
+    c.elem[2] = A.elem[0]*B.elem[1] - A.elem[1]*B.elem[0];
+    
+    return c;
+}
+
 fVector& operator += ( fVector &A, const fVector &B)
 {
     for(int i=0;i<A.size;i++)
