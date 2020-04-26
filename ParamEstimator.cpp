@@ -10,13 +10,12 @@ CParamEstimator::CParamEstimator(void)
 				  0.1576, 0.4854, 0.4218, 
 				  0.9706, 0.8003, 0.9157};
     fMatrix a(C,3,3);
-    cout << "OK" << endl;
+    cout << "Construct OK" << endl;
 }
 
-// CParamEstimator::~CParamEstimator()
-// {
-//   ;
-// }
+CParamEstimator::~CParamEstimator()
+{
+}
 
 // void CParamEstimator::SetParamEstiMethod(ParamEstiMethod Method)
 // {
