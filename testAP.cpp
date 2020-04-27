@@ -291,16 +291,19 @@ void testMatrixFuns()
 
 void testParamEstimator()
 {
+	Float A[3] = {1.1, 2.2, 3.3};
 	Float C[9] = {0.9649, 0.9572, 0.1419, 
 				  0.1576, 0.4854, 0.4218, 
 				  0.9706, 0.8003, 0.9157};
+	fVector VecA(A, 3);
 	fMatrix matA(C,3,3);
+
 	CParamEstimator c;
 	c.SetParamEstiMethod(ML);
 	c.GetParamEstiMethod();
-
-	c.SetMethodParameters(LS,&matA);
-	
+	// c.SetMethodParameters(LS,&{matA,VecA,matA});
+	LS_Param param = {&matA,&VecA,&matA}; 
+	c.SetMethodParameters(LS,&param);
 
 }
 
