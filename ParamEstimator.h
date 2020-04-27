@@ -18,7 +18,7 @@
 
 #include "fMatrix.h"
 
-enum ParamEstiMethod {LS = 1, WLS, ML};
+enum ParamEstiMethod {LS = 1, WLS = 2, ML = 3};
 
 typedef struct	st_LS_Param
 {
@@ -63,6 +63,10 @@ public:
 	
 	ParamEstiMethod	GetParamEstiMethod(void) const;
 	void*		GetMethodParameters(ParamEstiMethod Method) const;
+
+	private:
+		int EstiMethod;
+		void* EstiP;
 };
 
 #endif // __PARAM_ESTIMATOR_INCLUDED__
