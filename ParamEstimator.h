@@ -66,7 +66,7 @@ public:
 
 	private:
 		int EstiMethod;
-		void* EstiP;
+		// void* EstiP;
 };
 
 #endif // __PARAM_ESTIMATOR_INCLUDED__

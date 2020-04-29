@@ -157,6 +157,68 @@ fMatrix& operator /= (fMatrix &A,  Float n )
     return A;
 }
 
+fMatrix& operator *= (fMatrix &A, const fMatrix &B )
+{   
+    if(A.cols != B.rows)
+    {
+        cout<<"shape error !!!"<<endl;
+        exit(1);
+    }
+    fMatrix c(A.rows,B.cols);
+    for(int i=0;i<A.rows*B.cols;i++)
+    {
+        Float sum = 0;
+        int d = i/B.cols;
+        int n = i%B.cols;
+
+        for(int j=0;j<A.cols;j++)
+        {
+            sum += A.elem[d*A.cols+j]*B.elem[n+j*B.cols];
+        }
+        
+        // cout << sum << endl;
+        c.elem[i] = sum; 
+    }
+    A = c;
+    // cout << A.rows*B.cols<<endl;
+    return A;
+}
+
+fVector& operator *= (fVector &A, const fMatrix &B )
+{
+    fVector c(A.Size());
+    for(int i=0;i<B.cols;i++)
+    {
+        Float sum = 0;
+        for(int j=0;j<A.Size();j++)
+        {   
+            // cout << A.Array()[j];
+            sum += A.Array()[j]*B.elem[j*3+i];
+            // cout << A.Array()[j] << " " << B.elem[j*3+i] << endl;
+        }
+        // cout <<  sum << endl;
+        c.Array()[i] = sum;
+    }
+    A=c;
+    return A;
+}
+
+fMatrix &fMatrix::operator=( const fMatrix &M )
+{
+    if (this != &M)
+    {
+        delete[] this->elem;
+        this->elem = new Float[M.rows * M.cols];
+        this->rows = M.rows;
+        this->cols = M.cols;
+        for (int i = 0; i < M.rows * M.cols; i++)
+        {
+            this->elem[i] = M.elem[i];
+        }
+    }
+    return *this;
+}
+
 fMatrix  Transp      ( const fMatrix &A )
 {
     fMatrix c(A.cols,A.rows);
@@ -320,6 +382,15 @@ fMatrix  Inverse  ( const fMatrix &A)
     {
         cout << "shape error!" <<endl;
         return 0;
+    }
+    if(A.cols==2)
+    {
+        fMatrix c(2,2);
+        c.elem[0] = A.elem[3];
+        c.elem[1] = -A.elem[1];
+        c.elem[2] = -A.elem[2];
+        c.elem[3] = A.elem[0];
+        return c/Determinant(A);
     }
     fMatrix c(A.rows,A.cols);
     fMatrix d(A.rows-1,A.cols-1);

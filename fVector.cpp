@@ -156,6 +156,21 @@ fVector& operator /= ( fVector &A, Float b)
     return A;
 }
 
+fVector &fVector::operator=(const fVector &A)
+{
+    if (this != &A)
+    {
+        delete[] this->elem;
+        this->elem = new Float[A.size];
+        this->size = A.size;
+        for(int i=0;i<A.size;i++)
+        {
+            this->elem[i] = A.elem[i];
+        }
+    }
+    return *this;
+}
+
 // fVector operator + ( const fVector &A, const fVector &B)
 // {
 //     return fVector(A.elem[0]+B.elem[0],A.elem[1]+B.elem[1],A.elem[2]+B.elem[2]);

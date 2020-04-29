@@ -46,6 +46,7 @@ friend fMatrix& operator *= (       fMatrix &,       Float    );
 friend fMatrix& operator *= (       fMatrix &, const fMatrix & );
 friend fVector& operator *= (       fVector &, const fMatrix & );
 friend fMatrix& operator /= (       fMatrix &,       Float    );
+// friend fMatrix& operator = ( const fMatrix &M );
 
 /*-------------------------------------------------------------------------*
  *                                                                         *
@@ -101,7 +102,7 @@ public:
  *-------------------------------------------------------------------------*/
 	// 6. A=B
 	fMatrix  &operator=( const fMatrix &M );
-    fMatrix  &operator=( Float s );
+    // fMatrix  &operator=( Float s );
 
 /*-------------------------------------------------------------------------*
  *                                                                         *
@@ -141,4 +142,5 @@ fMatrix  Outer       ( const fVector &, const fVector & );
 fMatrix  Identity	( int nSize );
 fMatrix  Diag        ( const fVector & );
 fMatrix  Diag        ( Float, Float, Float );
+
 #endif // __MATRIX_INCLUDED__

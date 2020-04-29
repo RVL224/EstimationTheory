@@ -193,8 +193,8 @@ void testMatrixFuns()
 	cout << "\n6. A/2" << endl;
 	(MatA/2).Show();
 
-	cout << "\n MatX" << endl;
-	MatX.Show();
+	// cout << "\n MatX" << endl;
+	// MatX.Show();
 
 	// 7. A*B
 	cout << "\n7. A*B" << endl;
@@ -224,7 +224,23 @@ void testMatrixFuns()
 	cout << "\n13. A/=2" << endl;
 	(MatA/=2).Show();
 	cout << "\nStarts to test matrix functions..." << endl;
+	
+	// 14. A*=B
+	cout << "\n14. A*=B" << endl;
+	(MatA*=MatB).Show();
+	MatA = MatC;
+	
+	// cout << "\n MatA=" << endl;
+	// MatA.Show();
+	// 15. VecA*=MatA
+	cout << "\n15. VecA*=MatA" << endl;
+	(VecA*=MatA).Show(RowVec);
+	VecA = VecC;
 
+	// MatA.Show();
+	// VecC.Show();
+
+	// MatA.Show();
 	// 16. Xt
 	cout << "\n16. Xt" << endl;
 	Transp(MatX).Show();
@@ -267,8 +283,8 @@ void testMatrixFuns()
 	cout << "\n28. Inverse(MatA) = " << endl; 
 	(Inverse(MatA)).Show();
 
-	cout << "\nMatA"<<endl;
-	MatA.Show();
+	// cout << "\nMatA"<<endl;
+	// MatA.Show();
 
 	// 30. Mean(MatA)
 	cout << "\n30. Mean(MatA) = " << endl; 
@@ -291,23 +307,33 @@ void testMatrixFuns()
 
 void testParamEstimator()
 {
-	Float C[9] = {0.9649, 0.9572, 0.1419, 
-				  0.1576, 0.4854, 0.4218, 
-				  0.9706, 0.8003, 0.9157};
-	fMatrix matA(C,3,3);
+	Float A[5] = {  2.0, 2.1, 2.1, 2.03, 2.04 };
+	Float C[10] = { 1, 2.6,
+					1, 2.72,
+					1, 2.75,
+					1, 2.67,
+					1, 2.68 };
+
+	Float d[9] = {	0.9649, 0.9572, 0.1419,
+					0.1576, 0.4854, 0.4218,
+					0.9706, 0.8003, 0.9157 };
+
+	fVector VecA(A, 5);
+	fMatrix matA(C,5,2);
+	fMatrix matd(d,3,3);
 	CParamEstimator c;
 	c.SetParamEstiMethod(ML);
 	c.GetParamEstiMethod();
-
-	c.SetMethodParameters(LS,&matA);
-	
+	// c.SetMethodParameters(LS,&{matA,VecA,matA});
+	LS_Param param = {&matA,&VecA,&matd};
+	c.SetMethodParameters(LS,&param);
 
 }
 
 int main()
 {
 	// testVectorFuns();
-	// testMatrixFuns();
-	testParamEstimator();
+	testMatrixFuns();
+	// testParamEstimator();
 	return 0;
 }
