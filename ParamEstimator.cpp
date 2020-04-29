@@ -27,10 +27,18 @@ void CParamEstimator::SetMethodParameters(ParamEstiMethod Method, void*	pParam)
         // EstiP = (LS_Param *)pParam;
         LS_Param *LSP = (LS_Param *)pParam;
 
+
         cout << "H" << endl;
         LSP->pMat_H->Show();
         cout << "Z" << endl;
         LSP->pVec_Z->Show();
+        cout << "solve param" << endl;
+        fMatrix c(2,2);
+        // (Inverse(ATranspA(*(LSP->pMat_H)))).Show();
+        (Inverse(ATranspA(*(LSP->pMat_H)))*Transp(*(LSP->pMat_H))*(*(LSP->pVec_Z))).Show();
+        // (ATranspA(Inverse(*(LSP->pMat_Vz)))).Show();
+        // Show();
+        // ((ATranspA(*(LSP->pMat_H)))).Show();
     }
 }
 
