@@ -13,6 +13,25 @@ CParamEstimator::~CParamEstimator()
 {
 }
 
+fMatrix*	CParamEstimator::SolveOptParam(fVector*	pfVecOptParam)
+{
+    if(this->EstiMethod==LS)
+    {
+        cout << "LS" << endl;
+        // fVector c(pfVecOptParam->Size());
+        // LS_Param *LSP = (LS_Param *)EstiP;
+        // LSP->pMat_H->Show(); 
+        // *pfVecOptParam = (Inverse(ATranspA(*(LSP->pMat_H)))*Transp(*(LSP->pMat_H))*(*(LSP->pVec_Z)));
+        // pfVecOptParam->Show();   
+
+        // Inverse(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H)).Show();
+        // Inverse(ATranspA(*(this->LSP.pMat_H))).Show();
+        // Transp(*(this->LSP.pMat_H)).Show();
+        *pfVecOptParam = (Inverse(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H))*(*(this->LSP.pVec_Z)));
+        pfVecOptParam->Show();
+    }
+}
+
 void CParamEstimator::SetParamEstiMethod(ParamEstiMethod Method)
 {
     EstiMethod = Method;
@@ -22,27 +41,23 @@ void CParamEstimator::SetMethodParameters(ParamEstiMethod Method, void*	pParam)
 {
     if(Method == LS)
     {
-        cout << "LS" << endl;
-        // cout << (LS_Param*)pParam << endl;
         // EstiP = (LS_Param *)pParam;
-        LS_Param *LSP = (LS_Param *)pParam;
-
-
-        cout << "H" << endl;
-        LSP->pMat_H->Show();
-        cout << "Z" << endl;
-        LSP->pVec_Z->Show();
-        cout << "solve param" << endl;
-        fMatrix c(2,2);
-        // (Inverse(ATranspA(*(LSP->pMat_H)))).Show();
-        (Inverse(ATranspA(*(LSP->pMat_H)))*Transp(*(LSP->pMat_H))*(*(LSP->pVec_Z))).Show();
-        // (ATranspA(Inverse(*(LSP->pMat_Vz)))).Show();
-        // Show();
-        // ((ATranspA(*(LSP->pMat_H)))).Show();
+        LSP = *((LS_Param *)pParam);
+        
+    }
+    if(Method == LS)
+    {
+        // EstiP = (WLS_Param *)pParam;
+        WLSP = *((WLS_Param *)pParam);
+    }
+    if(Method == ML)
+    {
+        // EstiP = (ML_Param *)pParam;
+        MLP = *((ML_Param *)pParam);
     }
 }
 
 ParamEstiMethod	CParamEstimator::GetParamEstiMethod(void) const
 {
-    cout << EstiMethod << endl;
+    return ParamEstiMethod(EstiMethod);
 }
