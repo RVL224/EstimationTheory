@@ -293,6 +293,10 @@ void testMatrixFuns()
 	// 31. Cov(MatA)
 	cout << "\n31. Cov(MatA) = " << endl; 
 	(Cov(MatA)).Show();
+
+	// 32. Cov(VecA)
+	cout << "\n32. Cov(VecA) = " << endl; 
+	(Cov(VecA)).Show();
 	
 	// Float s[25] = {1,8,1,6,7,5,4,3,1,4,9,6,4,1,2,3,5,5,6,8,9,7,5,12,5};
 	// fMatrix Mats(s, 5, 5);
@@ -386,6 +390,7 @@ void testParamEstimator()
 	LS_Param param = {&matX,&vecY,NULL};
 	c.SetMethodParameters(LS,&param);
 	c.SolveOptParam(&vecZ);
+	
 }
 
 int main()

@@ -142,5 +142,5 @@ fMatrix  Outer       ( const fVector &, const fVector & );
 fMatrix  Identity	( int nSize );
 fMatrix  Diag        ( const fVector & );
 fMatrix  Diag        ( Float, Float, Float );
-
+fMatrix  Cov			( const fVector & );
 #endif // __MATRIX_INCLUDED__
