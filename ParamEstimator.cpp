@@ -18,17 +18,18 @@ fMatrix*	CParamEstimator::SolveOptParam(fVector*	pfVecOptParam)
     if(this->EstiMethod==LS)
     {
         cout << "LS" << endl;
-        // fVector c(pfVecOptParam->Size());
-        // LS_Param *LSP = (LS_Param *)EstiP;
-        // LSP->pMat_H->Show(); 
-        // *pfVecOptParam = (Inverse(ATranspA(*(LSP->pMat_H)))*Transp(*(LSP->pMat_H))*(*(LSP->pVec_Z)));
-        // pfVecOptParam->Show();   
+        fVector V((*this->LSP.pVec_Z).Size());
+        fMatrix Vv((*this->LSP.pVec_Z).Size(),(*this->LSP.pVec_Z).Size());
 
-        // Inverse(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H)).Show();
-        // Inverse(ATranspA(*(this->LSP.pMat_H))).Show();
-        // Transp(*(this->LSP.pMat_H)).Show();
         *pfVecOptParam = (Inverse(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H))*(*(this->LSP.pVec_Z)));
         pfVecOptParam->Show();
+
+        V = (*this->LSP.pVec_Z) - (*this->LSP.pMat_H)*(*pfVecOptParam);
+        // V.Show();
+
+        Vv = Cov(V);
+        Vv.Show();
+        // return &Vv;
     }
 }
 

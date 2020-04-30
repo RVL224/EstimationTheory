@@ -459,6 +459,10 @@ fMatrix  Cov    ( const fMatrix &A )
     }
     return (Transp(c)*c) / (A.rows-1);
 }
+fMatrix  Cov	( const fVector &A )
+{
+    return Cov(Outer(A,A)); 
+}
 
 void fMatrix::Show() const
 {
