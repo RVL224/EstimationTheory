@@ -307,33 +307,91 @@ void testMatrixFuns()
 
 void testParamEstimator()
 {
-	Float A[5] = {  2.0, 2.1, 2.1, 2.03, 2.04 };
-	Float C[10] = { 1, 2.6,
-					1, 2.72,
-					1, 2.75,
-					1, 2.67,
-					1, 2.68 };
+	// Float A[5] = {  2.0, 2.1, 2.1, 2.03, 2.04 };
+	// Float C[10] = { 1, 2.6,
+	// 				1, 2.72,
+	// 				1, 2.75,
+	// 				1, 2.67,
+	// 				1, 2.68 };
 
-	Float d[9] = {	0.9649, 0.9572, 0.1419,
-					0.1576, 0.4854, 0.4218,
-					0.9706, 0.8003, 0.9157 };
+	// Float d[9] = {	0.9649, 0.9572, 0.1419,
+	// 				0.1576, 0.4854, 0.4218,
+	// 				0.9706, 0.8003, 0.9157 };
 
-	fVector VecA(A, 5);
-	fMatrix matA(C,5,2);
-	fMatrix matd(d,3,3);
+	// fVector VecA(A, 5);
+	// fMatrix matA(C,5,2);
+	// fMatrix matd(d,3,3);
+	// fVector VecZ(2);
+	Float x[50] = {
+		1,50,
+		1,53,
+		1,54,
+		1,55,
+		1,56,
+		1,59,
+		1,62,
+		1,65,
+		1,67,
+		1,71,
+		1,72,
+		1,74,
+		1,75,
+		1,76,
+		1,79,
+		1,80,
+		1,82,
+		1,85,
+		1,87,
+		1,90,
+		1,93,
+		1,94,
+		1,95,
+		1,97,
+		1,100,
+	};
+	Float y[25] = {
+		122,
+		118,
+		128,
+		121,
+		125,
+		136,
+		144,
+		142,
+		149,
+		161,
+		167,
+		168,
+		162,
+		171,
+		175,
+		182,
+		180,
+		183,
+		188,
+		200,
+		194,
+		206,
+		207,
+		210,
+		219,
+	};
+	fMatrix matX(x,25,2);
+	fVector vecY(y,25);
+	fVector vecZ(25);
 	CParamEstimator c;
-	c.SetParamEstiMethod(ML);
-	c.GetParamEstiMethod();
+	c.SetParamEstiMethod(LS);
+	cout << c.GetParamEstiMethod() << endl;
 	// c.SetMethodParameters(LS,&{matA,VecA,matA});
-	LS_Param param = {&matA,&VecA,&matd};
+	LS_Param param = {&matX,&vecY,NULL};
 	c.SetMethodParameters(LS,&param);
-
+	c.SolveOptParam(&vecZ);
 }
 
 int main()
 {
 	// testVectorFuns();
-	testMatrixFuns();
-	// testParamEstimator();
+	// testMatrixFuns();
+	testParamEstimator();
 	return 0;
 }

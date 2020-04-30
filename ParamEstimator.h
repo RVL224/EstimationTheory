@@ -66,6 +66,10 @@ public:
 
 	private:
 		int EstiMethod;
+		//ParamEstiMethod
+		LS_Param LSP;
+		WLS_Param WLSP;
+		ML_Param MLP;
 		// void* EstiP;
 };
 
