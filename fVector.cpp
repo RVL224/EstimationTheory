@@ -268,6 +268,15 @@ fVector  Sqrt   ( const fVector &A )
     return c;
 }
 
+fVector Pow(const fVector &A,Float num)
+{
+    fVector c(A.size);
+    for(int i=0;i<A.size;i++)
+    {
+        c.elem[i] = pow(A.elem[i],num);
+    }
+    return c;
+}
 double  OneNorm  ( const fVector &A )
 {
     double n=0;

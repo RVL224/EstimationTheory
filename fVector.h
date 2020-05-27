@@ -67,6 +67,7 @@ friend double   TwoNorm     ( const fVector & ); // Returns two norm value of a 
 friend double   TwoNormSqr  ( const fVector & ); // Returns square of the two norm value of a vector
 
 friend fVector  Sqrt		( const fVector & ); // Element-wise square root of a vector
+friend fVector Pow(const fVector &,Float); 
 friend double   Mean		( const fVector & ); // Mean value of a vector.
 friend double   Var			( const fVector & ); // Variance of a vector. 
 friend double   Std			( const fVector & ); // Standard derivation of a vector.    	
