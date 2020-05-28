@@ -390,7 +390,17 @@ void testParamEstimator()
 	LS_Param param = {&matX,&vecY,NULL};
 	c.SetMethodParameters(LS,&param);
 	c.SolveOptParam(&vecZ);
-	
+
+	cout << "\n" ;
+	fMatrix A(3,4);
+	A.Show();
+
+	cout << "\n";
+	Float B[4] = {1,1,1,1};
+	fVector B_(B,4);
+	A.SetRow(1,B_);
+	A.SetRow(2,B_*3);
+	A.Show();
 }
 
 int main()

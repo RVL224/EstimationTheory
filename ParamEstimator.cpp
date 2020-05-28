@@ -22,13 +22,13 @@ fMatrix*	CParamEstimator::SolveOptParam(fVector*	pfVecOptParam)
         fMatrix Vv((*this->LSP.pVec_Z).Size(),(*this->LSP.pVec_Z).Size());
 
         *pfVecOptParam = (Inverse(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H))*(*(this->LSP.pVec_Z)));
-        pfVecOptParam->Show();
+        // pfVecOptParam->Show();
 
         V = (*this->LSP.pVec_Z) - (*this->LSP.pMat_H)*(*pfVecOptParam);
         // V.Show();
 
-        Vv = Cov(V);
-        Vv.Show();
+        // Vv = Cov(V);
+        // Vv.Show();
         // return &Vv;
     }
 }

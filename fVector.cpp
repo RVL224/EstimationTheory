@@ -333,6 +333,14 @@ fVector::fVector( const Float *x, int n )
     memcpy(elem,x,sizeof(Float)*size);
 }
 
+fVector::fVector( int n , const Float *x )
+{
+    elem = NULL;
+    size = n;
+    elem = new Float[n];
+    memcpy(elem,x,sizeof(Float)*size);
+}
+
 fVector::~fVector()
 {
     if (elem)
