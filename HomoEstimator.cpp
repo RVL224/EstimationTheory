@@ -49,5 +49,22 @@ Float lsHomography(Float* pHomography, Float* pDst_points, Float* pSrc_points, i
     y2 = s2 * yr - (s2 * yr_m);
 
     //	Step 4.Generate the observation matrix and observation vector Z by using the normalized correspondences.
+    fMatrix A(nPointsNum*2,8);
+    fVector Z(nPointsNum*2);
+
+    for(int i=0;i<nPointsNum*2;i+=2)
+    {
+        Float ax[8] = {x1(i/2), y1(i/2), 1, 0, 0, 0, -x2(i/2)*x1(i/2), -x2(i/2)*y1(i/2)};
+        Float ay[8] = {0, 0, 0, x1(i/2), y1(i/2), 1, -y2(i/2)*x1(i/2), -y2(i/2)*y1(i/2)};
+        fVector buffer_ax(ax,8);
+        fVector buffer_ay(ay,8);
+        // buffer_ax.Show(RowVec);
+        // buffer_ay.Show(RowVec);
+        A.SetRow(i  ,buffer_ax);
+        A.SetRow(i+1,buffer_ay);
+        
+        Z(i)   = x2(i/2);
+        Z(i+1) = y2(i/2);
+    }
     
 }

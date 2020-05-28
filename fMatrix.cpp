@@ -219,6 +219,14 @@ fMatrix &fMatrix::operator=( const fMatrix &M )
     return *this;
 }
 
+void    fMatrix::SetRow( int row, const fVector &A )
+{
+    for(int i=0;i<this->cols;i++)
+    {
+        this->elem[row*this->cols+i] = A.Array()[i];
+    }
+}
+
 fMatrix  Transp      ( const fMatrix &A )
 {
     fMatrix c(A.cols,A.rows);
