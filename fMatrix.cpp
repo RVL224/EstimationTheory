@@ -219,6 +219,26 @@ fMatrix &fMatrix::operator=( const fMatrix &M )
     return *this;
 }
 
+fVector  fMatrix::GetCol( int col ) const
+{
+    fVector c(this->rows);
+    for(int i=0;i<this->rows;i++)
+    {
+        c.Array()[i] = this->elem[i*this->cols+col];
+    }
+    return c;
+}
+
+fVector  fMatrix::GetRow( int row ) const
+{
+    fVector c(this->cols);
+    for(int i=0;i<this->cols;i++)
+    {
+        c.Array()[i] = this->elem[this->cols*row+i];
+    }
+    return c;
+}
+
 void    fMatrix::SetRow( int row, const fVector &A )
 {
     for(int i=0;i<this->cols;i++)
@@ -499,6 +519,15 @@ fMatrix::fMatrix( const fMatrix & A)
 } 
 
 fMatrix::fMatrix( Float *Array, int n_rows , int n_cols  )
+{
+    elem = NULL;
+    rows = n_rows;
+    cols = n_cols;
+    elem = new Float[rows*cols];
+    memcpy(elem,Array,sizeof(Float)*rows*cols);
+}
+
+fMatrix::fMatrix( int n_rows , int n_cols , Float *Array )
 {
     elem = NULL;
     rows = n_rows;
