@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h> 
 #include "fVector.h"
 #include "fMatrix.h"
@@ -83,7 +85,7 @@ Float lsHomography(Float* pHomography, Float* pDst_points, Float* pSrc_points, i
 
     buffer_h[8] = 1;
     fMatrix MatH(buffer_h, 3, 3);
-    MatH.Show();
+    // MatH.Show();
 
     //	Step 6.Recovery the initial homography from the two transformmatrices
     MatH = Inverse(T2) * MatH * T1;
@@ -113,7 +115,7 @@ Float lsHomography(Float* pHomography, Float* pDst_points, Float* pSrc_points, i
     //****************************
 
     // x_p = [ x2 ; y2 ; z2 ]
-    x_p = MatH1 * x_p; //	x_p = H*[xs';ys';ones(1,length(xs))];
+    x_p = MatH * x_p; //	x_p = H*[xs';ys';ones(1,length(xs))];
 
     /***************************************************************  Normalization  *********************************************************************************/
     // x_p = [ x2/z2 ; y2/z2 ; 1 ]
@@ -129,6 +131,39 @@ Float lsHomography(Float* pHomography, Float* pDst_points, Float* pSrc_points, i
     x_p.SetRow(0, buffer_1);
     x_p.SetRow(1, buffer_2);
     x_p.SetRow(2, buffer_3);
+    
+
+    FILE * fp;
+    
+    fp = fopen ("../scripe/g_x1.txt", "a+");
+    if(fp)
+    {
+        cout << "remove" << endl;
+        remove("../scripe/g_x1.txt");
+        fp = fopen ("../scripe/g_x1.txt", "a+");
+    }
+
+    for(int i=0;i<nPointsNum ;i++)
+    {
+        fprintf(fp,"%lf,%lf\n",x_p(0,i),x_p(1,i));
+    }
+
+    
+    fclose(fp);
+
+    // Float A_[3] = {1.1, 2.2, 3.3};
+	// Float B_[3] = {4.4, 5.5, 6.6};
+
+	// fVector VecA(A_, 3);
+	// fVector VecB(B_, 3);
+    // fMatrix MatC(3,4);
+
+    // (VecB/VecA).Show();
+    // MatC.SetRow(2,(VecB/VecA));
+    // MatC.Show();
+
+
+
     
 
     // x_p.Show();
