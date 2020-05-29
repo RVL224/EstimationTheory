@@ -45,7 +45,7 @@ Float lsHomography(Float* pHomography, Float* pDst_points, Float* pSrc_points, i
 
     //	Step 3.Normalize all coorespondences by the two transform matrices.
     fVector x1(nPointsNum), y1(nPointsNum), x2(nPointsNum), y2(nPointsNum);
-    x1 = s1 * xs - (s1 * ys_m);
+    x1 = s1 * xs - (s1 * xs_m);
     y1 = s1 * ys - (s1 * ys_m);
     x2 = s2 * xr - (s2 * xr_m);
     y2 = s2 * yr - (s2 * yr_m);
