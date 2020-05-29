@@ -21,7 +21,7 @@ fMatrix*	CParamEstimator::SolveOptParam(fVector*	pfVecOptParam)
         fVector V((*this->LSP.pVec_Z).Size());
         fMatrix Vv((*this->LSP.pVec_Z).Size(),(*this->LSP.pVec_Z).Size());
 
-        *pfVecOptParam = (Inverse(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H))*(*(this->LSP.pVec_Z)));
+        *pfVecOptParam = (Inverse_by_ALGLIB(ATranspA(*(this->LSP.pMat_H)))*Transp(*(this->LSP.pMat_H))*(*(this->LSP.pVec_Z)));
         // pfVecOptParam->Show();
 
         V = (*this->LSP.pVec_Z) - (*this->LSP.pMat_H)*(*pfVecOptParam);

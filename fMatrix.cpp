@@ -3,7 +3,9 @@
 #include <iomanip>
 #include <math.h>
 #include "fMatrix.h"
+#include "lib/linalg.h"
 using namespace std;
+using namespace alglib;
 
 fMatrix  operator +  ( const fMatrix &A, const fMatrix &B)
 {
@@ -454,6 +456,32 @@ fMatrix  Inverse  ( const fMatrix &A)
     
     }
     return Transp(c);
+}
+
+fMatrix  Inverse_by_ALGLIB(const fMatrix &aMat)
+{
+	fMatrix inverse(aMat.rows,aMat.cols);
+	real_2d_array a;
+	a.setlength(aMat.rows, aMat.cols);
+	for (int i = 0; i < aMat.rows; i++)
+	{
+		for (int j = 0; j < aMat.cols; j++)
+		{
+			a[i][j] = aMat.elem[i * aMat.cols + j];
+		}
+	}
+	setnworkers(4);
+	ae_int_t info;
+	matinvreport rep;
+	rmatrixinverse(a, info, rep);
+	for (int i = 0; i < aMat.rows; i++)
+	{
+		for (int j = 0; j < aMat.cols; j++)
+		{
+			inverse.elem[i * aMat.cols + j] = a[i][j];
+		}
+	}
+	return inverse;
 }
 
 fVector  Mean		( const fMatrix &A )

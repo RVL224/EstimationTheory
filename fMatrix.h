@@ -69,6 +69,7 @@ friend double   OneNorm     ( const fMatrix & );// Computes the L1-norm of the m
 friend double   InfNorm     ( const fMatrix & );// Computes the Inf-norm of the matrix A, which is the maximum absolute row sum.
 
 friend fMatrix  Inverse  ( const fMatrix & );// Computes the inverse of a square matrix.
+friend fMatrix  Inverse_by_ALGLIB  ( const fMatrix & );
 friend fMatrix  Cholesky	( const fMatrix & );// Computes Cholesky decomposition of a square matrix.	
 friend fVector  Mean		( const fMatrix & );// Computes column mean value of a matrix.	
 friend fMatrix  Cov			( const fMatrix & );// Returns a covariance matrix of a square matrix.
