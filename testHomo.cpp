@@ -11,7 +11,7 @@ int main()
     Float g_H4[9] = {0};
     Float g_H5[9] = {0};
     // cout << g_nNumPoints << endl;
-    lsHomography(g_H1,g_Ref_X,g_x1,g_nNumPoints);
+    wlsHomography(g_H1,g_Ref_X,g_x5,g_nNumPoints);
     // lsHomography(g_H2,g_Ref_X,g_x2,g_nNumPoints);
     // lsHomography(g_H3,g_Ref_X,g_x3,g_nNumPoints);
     // lsHomography(g_H4,g_Ref_X,g_x4,g_nNumPoints);
