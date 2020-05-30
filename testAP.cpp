@@ -381,26 +381,34 @@ void testParamEstimator()
 		219,
 	};
 	fMatrix matX(x,25,2);
+	fMatrix matW(25,25);
 	fVector vecY(y,25);
 	fVector vecZ(25);
 	CParamEstimator c;
-	c.SetParamEstiMethod(LS);
+
+	// c.SetParamEstiMethod(LS);
+	// cout << c.GetParamEstiMethod() << endl;
+	// LS_Param param = {&matX,&vecY,NULL};
+	// c.SetMethodParameters(LS,&param);
+	// c.SolveOptParam(&vecZ);
+
+	c.SetParamEstiMethod(WLS);
 	cout << c.GetParamEstiMethod() << endl;
 	// c.SetMethodParameters(LS,&{matA,VecA,matA});
-	LS_Param param = {&matX,&vecY,NULL};
-	c.SetMethodParameters(LS,&param);
+	WLS_Param param = {&matX,&matW,&vecY,NULL};
+	c.SetMethodParameters(WLS,&param);
 	c.SolveOptParam(&vecZ);
 
-	cout << "\n" ;
-	fMatrix A(3,4);
-	A.Show();
+	// cout << "\n" ;
+	// fMatrix A(3,4);
+	// A.Show();
 
-	cout << "\n";
-	Float B[4] = {1,1,1,1};
-	fVector B_(B,4);
-	A.SetRow(1,B_);
-	A.SetRow(2,B_*3);
-	A.Show();
+	// cout << "\n";
+	// Float B[4] = {1,1,1,1};
+	// fVector B_(B,4);
+	// A.SetRow(1,B_);
+	// A.SetRow(2,B_*3);
+	// A.Show();
 }
 
 int main()
