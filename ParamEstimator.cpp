@@ -36,7 +36,7 @@ fMatrix*	CParamEstimator::SolveOptParam(fVector*	pfVecOptParam)
         fMatrix Inv_ATAH(Inverse_by_ALGLIB(ATranspA(*(this->WLSP.pMat_H))));
 
         *pfVecOptParam = ( Inv_ATAH * Transp(*(this->WLSP.pMat_H)) * (*(this->WLSP.pVec_Z)) );
-        // pfVecOptParam->Show();
+        pfVecOptParam->Show();
 
         V = (*this->WLSP.pVec_Z) - ((*this->WLSP.pMat_H)*(*pfVecOptParam));
         // V.Show();
@@ -53,7 +53,7 @@ fMatrix*	CParamEstimator::SolveOptParam(fVector*	pfVecOptParam)
         // ((Transp(*this->WLSP.pMat_H))).Show();
         // Inv_ATAVH.Show();
         *pfVecOptParam = Inv_ATAVH * Transp(*this->WLSP.pMat_H) * (*this->WLSP.pMat_W) * (*(this->WLSP.pVec_Z));
-        // pfVecOptParam->Show();
+        pfVecOptParam->Show();
     }
 }
 

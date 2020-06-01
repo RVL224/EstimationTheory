@@ -398,6 +398,7 @@ void testParamEstimator()
 	WLS_Param param = {&matX,&matW,&vecY,NULL};
 	c.SetMethodParameters(WLS,&param);
 	c.SolveOptParam(&vecZ);
+	// vecZ.Show();
 
 	// cout << "\n" ;
 	// fMatrix A(3,4);
